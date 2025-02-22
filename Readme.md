@@ -1,167 +1,178 @@
-# Projeto CPF Extractor
 
-Este projeto consiste em duas partes:
+# PDF Extractor - Projeto CPF
 
-## Back-End
-Uma API construída com Node.js, Express, Firebase Admin e pdfjs-dist para processar uploads de arquivos PDF, extrair CPFs e armazená-los no Firebase Realtime Database.
+## Descrição
 
-## Front-End
-Uma aplicação Vue.js que permite ao usuário fazer upload de PDFs, visualizar os CPFs extraídos e gerenciar (editar/excluir) os CPFs armazenados.
+Este projeto é composto por duas partes: o **Back-End** e o **Front-End**. 
 
----
+### Back-End
+
+API construída com **Node.js**, **Express**, **Firebase Admin** e **pdfjs-dist** para processar uploads de arquivos PDF, extrair CPFs e armazená-los no **Firebase Realtime Database**.
+
+### Front-End
+
+Aplicação **Vue.js** que permite ao usuário fazer upload de PDFs, visualizar os CPFs extraídos e gerenciar (editar/excluir) os CPFs armazenados.
 
 ## Índice
+
 - [Pré-requisitos](#pré-requisitos)
 - [Instalação](#instalação)
-  - [Back-end](#back-end)
-  - [Front-end](#front-end)
 - [Configuração](#configuração)
-  - [Back-End](#configuração-do-back-end)
-  - [Front-End](#configuração-do-front-end)
 - [Funcionalidades](#funcionalidades)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Uso](#uso)
 - [Contribuição](#contribuição)
 
----
-
 ## Pré-requisitos
 
-Antes de começar, você precisa ter instalado:
-
-- Node.js (v12 ou superior)
-- NPM ou Yarn
-- Conta no Firebase (para configuração)
-- Vue CLI (para desenvolvimento e execução do front-end)
-
----
+- **Node.js** (v12 ou superior)
+- **NPM** ou **Yarn**
+- Conta no **Firebase** (para configurar o Firebase Realtime Database)
+- **Vue CLI** (para desenvolver e rodar o front-end)
 
 ## Instalação
 
-### Back-end
+### Back-End
 
 1. Clone o repositório:
-   ```bash
-   git clone https://github.com/adrianangelino/PDF-BACK.git
-   cd backend
-Instale as dependências:
 
-bash
-Copiar
-Editar
+```bash
+git clone <URL do repositório>
+cd backend
+```
+
+2. Instale as dependências:
+
+```bash
 npm install # ou yarn install
-Configuração do Firebase: Coloque o arquivo serviceAccountKey.json (credenciais do Firebase) no diretório src/config. Certifique-se de que a URL do Firebase esteja correta no arquivo de configuração.
+```
 
-Inicie o servidor:
+3. **Configuração do Firebase**:
 
-bash
-Copiar
-Editar
+Coloque o arquivo `serviceAccountKey.json` (credenciais do Firebase) no diretório `src/config`.
+
+Certifique-se de que a URL do Firebase esteja correta no arquivo `index.js`.
+
+4. Iniciar o servidor:
+
+```bash
 npm start # ou yarn start
-O back-end estará disponível em: http://localhost:5000
+```
 
-Front-end
-Navegue até o diretório do front-end:
+O back-end ficará disponível em: `http://localhost:5000`.
 
-bash
-Copiar
-Editar
+### Front-End
+
+1. Navegue até o diretório do front-end:
+
+```bash
 cd frontend
-Instale as dependências:
+```
 
-bash
-Copiar
-Editar
+2. Instale as dependências:
+
+```bash
 npm install # ou yarn install
-Inicie o servidor de desenvolvimento:
+```
 
-bash
-Copiar
-Editar
+3. Iniciar o servidor de desenvolvimento:
+
+```bash
 npm run serve # ou yarn serve
-O front-end estará disponível em: http://localhost:8080
+```
 
-Configuração
-Configuração do Back-End
+O front-end geralmente estará disponível em: `http://localhost:8080`.
+
+## Configuração
+
+### Configuração do Back-End
+
 O back-end utiliza as seguintes tecnologias e pacotes:
 
-Express: Framework para criar a API.
-Multer: Middleware para upload de arquivos.
-pdfjs-dist: Biblioteca para extrair texto do arquivo PDF.
-Firebase Admin: Para integração com o Firebase Realtime Database.
-Principais pontos finais:
-POST /api/pdf/upload: Realiza o upload de um arquivo PDF, extrai os CPFs e os salva no Firebase.
-GET /api/cpfs: Retorna todos os CPFs salvos.
-PUT /api/cpfs/:cpf: Atualiza um CPF.
-DELETE /api/cpfs/:cpf: Exclui um CPF.
-Configuração do Front-End
+- **Express**: Framework para criar uma API.
+- **Multer**: Middleware para upload de arquivos.
+- **pdfjs-dist**: Biblioteca para extrair texto dos arquivos PDF.
+- **Firebase Admin**: Para integração com o Firebase Realtime Database.
+
+**Principais endpoints**:
+
+- `POST /api/pdf/upload`: Realiza o upload de um arquivo PDF, extrai os CPFs e os salva no Firebase.
+- `GET /api/cpfs`: Retorna todos os CPFs salvos.
+- `PUT /api/cpfs/:cpf`: Edita um CPF.
+- `DELETE /api/cpfs/:cpf`: Exclui um CPF.
+
+### Configuração do Front-End
+
 O front-end foi desenvolvido com:
 
-Vue.js: Estrutura para criar a SPA.
-Axios: Para fazer requisições HTTP à API.
-Vue Router: Para gerenciar as rotas da aplicação.
-Componentes principais:
-HomePage.vue: Permite o upload de arquivos PDF e exibe os CPFs extraídos.
-CpfList.vue: Exibe os CPFs armazenados no Firebase.
-Funcionalidades
-Upload de PDF: Permite enviar um arquivo PDF para o back-end, onde os CPFs serão extraídos.
-Extração de CPFs: O back-end usa a biblioteca pdfjs-dist para extrair os números de CPF do PDF.
-Armazenamento no Firebase: Os CPFs extraídos são salvos no Firebase Realtime Database.
-Visualização dos CPFs: A interface exibe os CPFs em uma lista rolável.
-Edição e Exclusão: Permite que o usuário edite ou exclua um CPF diretamente pelo front-end.
-Estrutura do Projeto
-bash
-Copiar
-Editar
+- **Vue.js**: Framework para construir a interface.
+- **Axios**: Para fazer requisições HTTP à API.
+- **Vue Router**: Para navegação entre as páginas.
+
+**Componentes principais**:
+
+- **HomePage.vue**: Página para upload de PDFs e visualização dos CPFs extraídos.
+- **CpfList.vue**: Página para listagem, edição e exclusão de CPFs.
+
+## Funcionalidades
+
+- **Upload de PDF**: Permite enviar um arquivo PDF para o back-end para extração dos CPFs.
+- **Extração de CPFs**: Utiliza o `pdfjs-dist` para extrair os números de CPF dos arquivos PDF.
+- **Armazenamento no Firebase**: Os CPFs extraídos são salvos no Firebase Realtime Database.
+- **Visualização dos CPFs**: A interface exibe os CPFs em um container centralizado, com scroll (caso a lista seja longa).
+- **Edição e Exclusão**: Permite que o usuário edite ou exclua um CPF diretamente pela interface.
+
+## Estrutura do Projeto
+
+```bash
 backend/
 ├── src/
-│   ├── config/            # Configurações, incluindo o serviceAccountKey.json do Firebase
-│   ├── controller/        # Lógica dos controladores para as rotas
-│   ├── routes/            # Definição dos endpoints da API
-│   ├── services/          # Serviços para manipulação de dados, como extração de PDF e CPF
+│   ├── config/                # Configurações (ex.: serviceAccountKey.json para o Firebase)
+│   ├── controller/            # Lógica para as rotas da API
+│   ├── routes/                # Endpoints da API (ex.: upload PDF, listar/excluir CPFs)
+│   ├── services/              # Manipulação de dados (ex.: extração de PDF e CPF)
 │   └── (outros arquivos de suporte)
-└── index.js               # Arquivo principal do servidor Express
+└── index.js                    # Arquivo principal que inicializa o servidor Express
 
 frontend/
 ├── src/
-│   ├── assets/
-│   │   └── styles/        # Estilos do front-end
-│   │       └── CpfList.scss
-│   ├── components/        # Componentes Vue.js
-│   ├── views/             # Páginas
-│   │   ├── HomePage.vue   # Página de upload e visualização de CPFs
-│   │   └── CpfList.vue    # Página de visualização/edição/exclusão de CPFs
-│   ├── router/            # Configuração do Vue Router
-│   │   └── index.js
-│   └── App.vue            # Componente principal da aplicação
-├── package.json
-└── README.md              # (Opcional) README do front-end
-Uso
-Back-end:
-Inicie o servidor com:
+│   ├── assets/                # Arquivos estáticos (imagens, fontes, etc.)
+│   ├── components/            # Componentes Vue.js reutilizáveis
+│   ├── views/                 # Páginas da aplicação
+│   │   ├── HomePage.vue       # Página para upload de PDF e visualização de CPFs
+│   │   └── CpfList.vue        # Página para listagem, edição e exclusão de CPFs
+│   ├── router/                # Configuração do Vue Router para navegação entre páginas
+│   └── App.vue                # Componente principal da aplicação
+├── package.json               # Dependências do front-end
+└── README.md                  # Documentação do front-end
+```
 
-bash
-Copiar
-Editar
+## Uso
+
+### Back-End
+
+1. Inicie o servidor:
+
+```bash
 npm start # ou yarn start
-O back-end estará disponível em http://localhost:5000.
+```
 
-Front-end:
-Inicie o servidor de desenvolvimento com:
+O back-end ficará disponível em: `http://localhost:5000`.
 
-bash
-Copiar
-Editar
+### Front-End
+
+1. Inicie o servidor de desenvolvimento:
+
+```bash
 npm run serve # ou yarn serve
-Acesse o front-end via http://localhost:8080.
+```
 
-A partir da página inicial, você pode fazer upload de PDFs e extrair os CPFs.
+O front-end estará disponível em: `http://localhost:8080`.
 
-Contribuição
-Contribuições são bem-vindas! Para contribuir, basta seguir os seguintes passos:
+## Contribuição
 
-Faça um fork deste repositório.
-Crie uma branch para sua feature (git checkout -b feature/nome-da-feature).
-Faça suas alterações e commit (git commit -am 'Adiciona nova feature').
-Envie para a branch do seu fork (git push origin feature/nome-da-feature).
-Abra um Pull Request.
+1. Fork este repositório.
+2. Crie uma branch para sua funcionalidade (`git checkout -b feature/nova-funcionalidade`).
+3. Faça o commit das suas mudanças (`git commit -am 'Adiciona nova funcionalidade'`).
+4. Envie a branch para o repositório remoto (`git push origin feature/nova-funcionalidade`).
+5. Abra um pull request.
